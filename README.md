@@ -3,11 +3,14 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 
 Home Assistant integration for Epever solar charge controllers via Modbus TCP (WiFi dongle).
+Version for DuoRacer MPPT
 
 ## Features
 
 - Real-time monitoring of PV (solar panel) voltage, current, and power
-- Battery voltage, current, and power monitoring
+- Battery voltage, current, and power monitoring for BATT1 and BATT2 SOC for BATT2
+- Generated energy Day/month/year/total
+- Max/Min Battery voltege during day
 - Load voltage, current, and power monitoring
 - Device temperature monitoring
 - Configurable via UI (config flow)
@@ -22,7 +25,7 @@ Home Assistant integration for Epever solar charge controllers via Modbus TCP (W
 3. Click the three dots menu (⋮) in the top right corner
 4. Select **Custom repositories**
 5. Enter the following:
-   - **Repository**: `https://github.com/zuzkins/ha-epever`
+   - **Repository**: `https://github.com/oskarhart/ha-epever`
    - **Category**: `Integration`
 6. Click **Add**
 7. The integration will appear in HACS
@@ -31,7 +34,7 @@ Home Assistant integration for Epever solar charge controllers via Modbus TCP (W
 
 ### Manual Installation
 
-1. Download the latest release from the [releases page](https://github.com/zuzkins/ha-epever/releases)
+1. Download the latest release from the [releases page](https://github.com/oskarhart/ha-epever/releases)
 2. Extract the `zepever` folder
 3. Copy the `zepever` folder to your `custom_components` directory in your Home Assistant configuration directory
 4. Restart Home Assistant
@@ -45,6 +48,7 @@ Home Assistant integration for Epever solar charge controllers via Modbus TCP (W
    - **Device Name**: A human-friendly name for your device
    - **Device Address**: The hostname or IP address of the WiFi dongle (e.g., `192.168.1.100` or `epever.local`)
    - **Device Port**: The TCP port for Modbus TCP communication (default: `9999`)
+   - **unit_id**: id for Modbus (default: `1`
 5. Click **Submit**
 
 ## Requirements
@@ -66,7 +70,14 @@ Home Assistant integration for Epever solar charge controllers via Modbus TCP (W
 - **Load Current** - Load output current
 - **Load Power** - Load power consumption
 - **Device Temperature** - Charge controller temperature
-
+- **Battery 2 Voltage** - Battery 2 (Vehicle Battery) voltage
+- **Battery 2 Current** - Battery 2 (Vehicle Battery) current
+- **Battery 2 Power** - Battery 2 (Vehicle Battery) power
+- **Maximum Battery 1 Voltage today** - Battery 1 (Vehicle Battery) voltage
+- **Minimum Battery 1 Voltage today** - Battery 1 (Vehicle Battery) voltage
+- **Maximum Battery 2 Voltage today** - Battery 2 (Vehicle Battery) voltage
+- **Minimum Battery 2 Voltage today** - Battery 2 (Vehicle Battery) voltage
+- **Generated Energy today/month/year/total** Solar panel today/month/year/total
 
 ## Troubleshooting
 
@@ -76,7 +87,7 @@ Home Assistant integration for Epever solar charge controllers via Modbus TCP (W
 
 ## Support
 
-- [Issue Tracker](https://github.com/zuzkins/ha-epever/issues)
+- [Issue Tracker](https://github.com/oskarhart/ha-epever/issues)
 
 ## License
 
@@ -86,8 +97,8 @@ This project is licensed under the MIT License.
 
 ### Configuration
 
-<picture><img src="screenshots/configuration.png" width="30%" /></picture>
+<picture><img src="screenshots/Integrations_–_Home_Assistant.png" width="30%" /></picture>
 
 ### Sensor Data
 
-<picture><img src="screenshots/data.png" width="50%" /></picture>
+<picture><img src="screenshots/Data duoRacer.png" width="50%" /></picture>
