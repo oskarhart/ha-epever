@@ -5,16 +5,18 @@
         },
         "error": {
             "cannot_connect": "Failed to connect",
-            "invalid_auth": "Invalid authentication",
             "unknown": "Unexpected error"
         },
         "step": {
             "user": {
                 "data": {
-                    "host": "Host",
-                    "password": "Password",
-                    "username": "Username"
-                }
+                    "device_name": "Device name",
+                    "device_address": "Device address",
+                    "device_port": "Device port",
+                    "unit_id": "Modbus unit ID"
+                },
+                "description": "Configure your Epever device connection",
+                "title": "Epever"
             }
         }
     }

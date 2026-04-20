@@ -12,7 +12,8 @@
         "data": {
           "device_name": "Device name",
           "device_address": "Device address",
-          "device_port": "Device port"
+          "device_port": "Device port",
+          "unit_id": "Modbus unit ID"
         },
         "description": "Configure your Epever device connection",
         "title": "Epever"

@@ -15,7 +15,9 @@ from .const import (
     CONF_DEVICE_ADDRESS,
     CONF_DEVICE_NAME,
     CONF_DEVICE_PORT,
+    CONF_UNIT_ID,
     DEFAULT_PORT,
+    DEFAULT_UNIT_ID,
     DOMAIN,
 )
 from .epever_com import get_all_data
@@ -27,6 +29,7 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
         vol.Required(CONF_DEVICE_NAME): str,
         vol.Required(CONF_DEVICE_ADDRESS): str,
         vol.Required(CONF_DEVICE_PORT, default=DEFAULT_PORT): int,
+        vol.Required(CONF_UNIT_ID, default=DEFAULT_UNIT_ID): int,
     }
 )
 
@@ -42,6 +45,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
             get_all_data,
             data[CONF_DEVICE_ADDRESS],
             data[CONF_DEVICE_PORT],
+            data[CONF_UNIT_ID],
         )
         if result is None:
             raise CannotConnect
@@ -65,6 +69,11 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
         if user_input is not None:
             try:
+                # Avoid creating duplicate config entries for the same endpoint.
+                await self.async_set_unique_id(
+                    f"{user_input[CONF_DEVICE_ADDRESS]}:{user_input[CONF_DEVICE_PORT]}"
+                )
+                self._abort_if_unique_id_configured()
                 info = await validate_input(self.hass, user_input)
             except CannotConnect:
                 errors["base"] = "cannot_connect"
